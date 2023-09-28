@@ -1,15 +1,27 @@
 import { LightningElement,wire,track,api} from 'lwc';
 import getAccLocations from '@salesforce/apex/DisplayAccUsingMapController.getLocations'
-import City from '@salesforce/schema/Lead.City';
+import { getRecord, getFieldValue } from "lightning/uiRecordApi";
+import NAME_FIELD from '@salesforce/schema/Account.Name';
+
 
 export default class DisplayAccUsingMap extends LightningElement {
 
 @api recordId;
 @track error;
-@track accName='Dheeraj';
+@track accName
 @track mapMarkers=[];
 @track zoomLevel=4;
 @track markersTitle='';
+
+@wire(getRecord, {recordId:'$recordId',
+     fields:[NAME_FIELD]})
+     accountHandler({data}){
+         if(data){
+             console.log(data)
+             this.accName = getFieldValue(data, NAME_FIELD)
+             console.log(this.accName);
+         }
+     }
 
 @wire(getAccLocations,{accountName : '$accName'})
 wiredLocations({data,error}){
@@ -34,17 +46,12 @@ wiredLocations({data,error}){
             icon: 'custom:custom26',
             title:dataItem.Name
         },
-        ];
-            
+        ];   
         });
         this.error = undefined;
-    
     }
     else if(error){
         this.error=error;
-    
     }
-
-}
-    
+}   
 }
