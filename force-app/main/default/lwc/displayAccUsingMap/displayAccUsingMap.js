@@ -2,10 +2,7 @@ import { LightningElement,wire,track,api} from 'lwc';
 import getAccLocations from '@salesforce/apex/DisplayAccUsingMapController.getLocations'
 import { getRecord, getFieldValue } from "lightning/uiRecordApi";
 import NAME_FIELD from '@salesforce/schema/Account.Name';
-
-
 export default class DisplayAccUsingMap extends LightningElement {
-
 @api recordId;
 @track error;
 @track accName
