@@ -1,6 +1,16 @@
-<template>
-    <lightning-card>
-        <lightning-button label="Get Image" onclick={getImageHandler}></lightning-button>
-        <img src={imgURL} style="max-width:300px;"/>
-    </lightning-card>   
-</template>
+ <template>
+    <lightning-card title="Random Dog Image">
+        <div class="slds-p-around_medium">
+            <lightning-button label="Get Image" onclick={getImageHandler}></lightning-button>
+        </div>
+        <div class="slds-p-around_medium">
+            <img if:true={imgURL} src={imgURL} style="max-width: 300px;" alt="Random Dog Image" />
+            <p if:false={imgURL}>No image available.</p>
+        </div>
+    </lightning-card>
+</template> 
+<!-- <template>
+    <lightning-card title="Get Random Cat using FETCH APIs">
+      <img src={imageURL} />
+    </lightning-card>
+  </template> -->
