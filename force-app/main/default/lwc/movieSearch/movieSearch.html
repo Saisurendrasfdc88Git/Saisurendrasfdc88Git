@@ -1,0 +1,56 @@
+<template>
+    <!-- filter Section-->
+    <div>
+<lightning-layout horizontal-align="center">
+    <lightning-layout-item padding="around-small" size="3">
+        
+            <lightning-combobox
+                    name="type"
+                    label="type"
+                    value={selectedType}
+                    placeholder="Select type"
+                    options={typeOptions}
+                    onchange={handleChange} ></lightning-combobox>
+
+    </lightning-layout-item>
+    <lightning-layout-item padding="around-small" size="7">
+
+        <lightning-input
+        name="Search"
+        label="Enter Search"
+        placeholder="Search for Movie/Series"
+        type="search"
+        is-loading={loading}
+        value={selectedSearch}
+        onchange={handleChange}
+        
+    ></lightning-input>
+
+    </lightning-layout-item>
+    <lightning-layout-item padding="around-small" size="2">
+
+        <lightning-input type="number" 
+                         name="pageNo"
+                          label="Page" 
+                          onchange={handleChange}
+                          value={selectedPageNo}
+                          field-level-help="Range 1-100"
+                          min="1"
+                          max="100"
+                          step="1"
+                          message-when-range-overflow="Maximum value is 100"
+                          message-when-range-underflow="Minimum value is 1"
+                          >
+                          
+                        </lightning-input>
+
+    </lightning-layout-item>
+</lightning-layout>
+    </div>
+    <!-- Display Section-->
+    <div>
+
+
+    </div>
+    
+</template>
